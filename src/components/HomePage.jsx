@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header';
 
 function HomePage() {
   return (
@@ -7,8 +8,8 @@ function HomePage() {
       <h1>Welcome to My App</h1>
       <nav>
         <ul>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/signup">Signup</Link></li>
+          <Header/>
+          
         </ul>
       </nav>
     </div>
