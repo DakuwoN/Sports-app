@@ -11,6 +11,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/nfl" element={<NFL />} />
+        <Route path="/nba" element={<NBA />} />
+        <Route path="/nhl" element={<NHL />} /> */}
       </Routes>
     </Router>
   );
