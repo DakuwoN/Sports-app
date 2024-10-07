@@ -14,8 +14,9 @@ const theme = createTheme({
           textDecoration: 'none',  // Remove underline from links
           color: 'white',  // Set default link color to white
           '&:hover': {  // Define styles for the hover state of links
-            color: '#f50057',  // Change color on hover
+            color: 'red',  // Change color on hover
             textDecoration: 'none',  // Ensure no underline appears on hover
+            cursor: 'pointer',
           },
         },
       },

@@ -1,16 +1,6 @@
-import { Link } from "react-router-dom";  // Importing Link component for routing
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";  // Material UI components
-import { styled } from '@mui/system';  // Importing MUI's styled utility for custom styles
+import { Link } from "@mui/material";
 
-// Create a styled Link component with Material UI's `styled` utility
-const StyledLink = styled(Link)({
-    textDecoration: 'none',  // Removes underline
-    color: 'white',        // Inherits the color from the parent
-    '&:hover': {             // Optional: Customize hover state
-        color: '#f50057',    // Example hover color
-        textDecoration: 'none',  // Optional underline on hover
-    },
-});
 
 function Header() {
     return (
@@ -23,11 +13,11 @@ function Header() {
                         {/* Box to hold the navigation links, with flex display for horizontal layout */}
                         <Box sx={{ display: 'flex', gap: 2 }}>  
                             {/* Individual links to different routes */}
-                            <StyledLink to="/nfl">NFL</StyledLink>
-                            <StyledLink to="/nba">NBA</StyledLink>
-                            <StyledLink to="/nhl">NHL</StyledLink>
-                            <StyledLink to="/login">Login</StyledLink>
-                            <StyledLink to="/signup">Sign Up</StyledLink>
+                            <Link to="/nfl">NFL</Link>
+                            <Link to="/nba">NBA</Link>
+                            <Link to="/nhl">NHL</Link>
+                            <Link to="/login">Login</Link>
+                            <Link to="/signup">Sign Up</Link>
                         </Box>
                     </Toolbar>
                 </AppBar>
