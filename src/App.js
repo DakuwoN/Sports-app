@@ -1,22 +1,56 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import Login from './components/Login';
-import Signup from './components/SignUp';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  // Import necessary components from React Router for routing
+import Layout from './components/Layout';  // Import the Layout component to wrap around the routes
+import HomePage from './components/HomePage';  // Import the HomePage component
+import Login from './components/Login';  // Import the Login component
+import SignUp from './components/SignUp';  // Import the SignUp component
+import { ThemeProvider, createTheme } from '@mui/material/styles';  // Import ThemeProvider and createTheme from Material UI
 
+// Define your custom theme here using Material UI's createTheme function
+const theme = createTheme({
+  components: {
+    MuiLink: {  // Target the MuiLink component for styling
+      styleOverrides: {
+        root: {
+          textDecoration: 'none',  // Remove underline from links
+          color: 'white',  // Set default link color to white
+          '&:hover': {  // Define styles for the hover state of links
+            color: '#f50057',  // Change color on hover
+            textDecoration: 'none',  // Ensure no underline appears on hover
+          },
+        },
+      },
+    },
+  },
+  palette: {
+    primary: {
+      main: '#3f51b5',  // Define primary color for the theme
+    },
+    secondary: {
+      main: '#f50057',  // Define secondary color for the theme
+    },
+  },
+  typography: {
+    fontFamily: 'Arial',  // Set the default font family for the application
+  },
+});
+
+// Main App component
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/nfl" element={<NFL />} />
-        <Route path="/nba" element={<NBA />} />
-        <Route path="/nhl" element={<NHL />} /> */}
-      </Routes>
-    </Router>
+    <ThemeProvider theme={theme}>  {/* Apply the custom theme using ThemeProvider */}
+      <Router>  {/* Set up the Router to handle navigation */}
+        <Routes>  {/* Define the routes for the application */}
+          {/* Wrapping routes with Layout to provide consistent structure */}
+          <Route path="/" element={<Layout />}>  {/* Base route with Layout component */}
+            <Route index element={<HomePage />} />  {/* Render HomePage when the base path is matched */}
+            <Route path="login" element={<Login />} />  {/* Render Login component when /login is matched */}
+            <Route path="signup" element={<SignUp />} />  {/* Render SignUp component when /signup is matched */}
+            {/* Additional routes can be added here, such as NFL, NBA, NHL */}
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
-export default App;
+export default App;  // Export the App component for use in other parts of the application
