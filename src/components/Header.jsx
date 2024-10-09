@@ -1,5 +1,6 @@
-import { AppBar, Toolbar, Typography, Box } from "@mui/material";  // Material UI components
+import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material";  // Material UI components
 import { Link } from "@mui/material";
+import { Link as RouterLink } from 'react-router-dom';
 
 
 function Header() {
@@ -11,13 +12,21 @@ function Header() {
                         {/* Typography for the App title */}
                         <Typography variant="h6" sx={{flexGrow: 1}}>Gamble</Typography>  
                         {/* Box to hold the navigation links, with flex display for horizontal layout */}
-                        <Box sx={{ display: 'flex', gap: 2 }}>  
+                        <Box sx={{ display: 'flex', gap: 6, alignItems: 'center' }}>  
                             {/* Individual links to different routes */}
-                            <Link to="/nfl">NFL</Link>
-                            <Link to="/nba">NBA</Link>
-                            <Link to="/nhl">NHL</Link>
-                            <Link to="/login">Login</Link>
-                            <Link to="/signup">Sign Up</Link>
+                            <Link component={RouterLink} to="/nfl" color="inherit">NFL</Link>
+                            <Link component={RouterLink} to="/nba">NBA</Link>
+                            <Link component={RouterLink} to="/nhl">NHL</Link>
+                            <Box sx={{
+                                height: '64px',
+                                width: '2px',
+                                backgroundColor: 'white',
+                                marginX: 2
+                            }} />
+                            <Box sx={{display: 'flex', gap: 6, alignItems: 'center'}}>
+                                <Button component={RouterLink} to="/login" variant="outlined" color="inherit">Login</Button>
+                                <Button component={RouterLink} to="/signup" variant="contained" color="secondary">Sign Up</Button> 
+                            </Box>                           
                         </Box>
                     </Toolbar>
                 </AppBar>

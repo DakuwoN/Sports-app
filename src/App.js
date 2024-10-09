@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  // I
 import Layout from './components/Layout';  // Import the Layout component to wrap around the routes
 import HomePage from './components/HomePage';  // Import the HomePage component
 import Login from './components/Login';  // Import the Login component
-import SignUp from './components/SignUp';  // Import the SignUp component
+import Signup from './components/Signup';  // Import the SignUp component
 import { ThemeProvider, createTheme } from '@mui/material/styles';  // Import ThemeProvider and createTheme from Material UI
 
 // Define your custom theme here using Material UI's createTheme function
@@ -45,7 +45,7 @@ function App() {
           <Route path="/" element={<Layout />}>  {/* Base route with Layout component */}
             <Route index element={<HomePage />} />  {/* Render HomePage when the base path is matched */}
             <Route path="login" element={<Login />} />  {/* Render Login component when /login is matched */}
-            <Route path="signup" element={<SignUp />} />  {/* Render SignUp component when /signup is matched */}
+            <Route path="signup" element={<Signup />} />  {/* Render SignUp component when /signup is matched */}
             {/* Additional routes can be added here, such as NFL, NBA, NHL */}
           </Route>
         </Routes>
