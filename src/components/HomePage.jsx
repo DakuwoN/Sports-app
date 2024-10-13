@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, CardContent, Typography, Divider } from '@mui/material';
+import { Box, Card, CardContent, Typography, Divider, CardMedia } from '@mui/material';
 
 function HomePage() {
   const sampleNewsData = [
@@ -7,19 +7,22 @@ function HomePage() {
       title: 'NFL Week 1 Highlights', 
       description: 'Catch up on all the action from the first week of the NFL season.', 
       date: 'October 10, 2024',
-      author: 'John Doe'
+      author: 'John Doe',
+      imageURL: 'https://picsum.photos/200'
     },
     { 
       title: 'NBA Preseason Updates', 
       description: 'Key takeaways from the NBA preseason games so far.', 
       date: 'October 9, 2024',
-      author: 'Jane Smith'
+      author: 'Jane Smith',
+      imageURL: 'https://picsum.photos/200'
     },
     { 
       title: 'NHL Trade Rumors', 
       description: 'Latest NHL trade rumors ahead of the new season.', 
       date: 'October 8, 2024',
-      author: 'Mike Johnson'
+      author: 'Mike Johnson',
+      imageURL: 'https://picsum.photos/200'
     },
   ];
 
@@ -33,28 +36,41 @@ function HomePage() {
         justifyContent: 'flex-start',
         alignItems: 'center',
         gap: 2,                 
-        paddingTop: 1,
+        paddingTop: 2,
       }}
     >
       {sampleNewsData.map((news, index) => (
         <Card
           key={index}
           sx={{
-            width: '500px',             
+            width: '700px', 
             display: 'flex',            
             flexDirection: 'column',    
             borderRadius: 2,            
             boxShadow: 3,               
             margin: 1,                  
             backgroundColor: '#f5f5f5',
-            overflow: 'hidden',
+            overflow: 'visible',
           }}
         >
-          <CardContent sx={{ padding: '16px' }}>
+          <CardContent sx={{ 
+            padding: '16px',
+            overflowY: 'auto',
+
+           }}>
             {/* Title */}
             <Typography variant="h6" sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {news.title}
             </Typography>
+
+            {/* Image */}
+            <CardMedia
+              component="img"
+              height="200"
+              image={news.imageURL}
+              alt={`${news.title} image`}
+              sx={{ marginTop: 2, maxHeight: '200px', objectFit: 'cover' }}
+            />
 
             {/* Description */}
             <Typography variant="body2" color="text.secondary" sx={{ marginTop: 2 }}>
