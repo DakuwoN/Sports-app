@@ -1,0 +1,134 @@
+import React from 'react';
+import { Box, Card, CardContent, Typography, Divider, CardMedia, Container, List, ListItem, ListItemText } from '@mui/material';
+
+function HomePage() {
+    const sampleNewsData = [
+        { 
+          title: 'NFL Week 1 Highlights', 
+          description: 'Catch up on all the action from the first week of the NFL season.', 
+          date: 'October 10, 2024',
+          author: 'John Doe',
+          imageURL: 'https://picsum.photos/200'
+        },
+        { 
+          title: 'NBA Preseason Updates', 
+          description: 'Key takeaways from the NBA preseason games so far.', 
+          date: 'October 9, 2024',
+          author: 'Jane Smith',
+          imageURL: 'https://picsum.photos/200'
+        },
+        { 
+          title: 'NHL Trade Rumors', 
+          description: 'Latest NHL trade rumors ahead of the new season.', 
+          date: 'October 8, 2024',
+          author: 'Mike Johnson',
+          imageURL: 'https://picsum.photos/200'
+        },
+      ];
+
+  return (
+    <Container maxWidth="xl" sx={{ height: '100vh', py: 2 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: 2,
+          height: '100%',
+          border: '2px solid #000',
+          borderRadius: 2,
+          overflow: 'hidden',
+        }}
+      >
+        {/* Left Column */}
+        <Box
+          sx={{
+            flex: { xs: '1 1 100%', md: '0 0 25%' },
+            backgroundColor: '#ffcccb', // Light red
+            overflowY: 'auto',
+            padding: 2,
+            border: '1px solid #ff0000',
+          }}
+        >
+          <Typography variant="h6" gutterBottom>Popular Categories</Typography>
+          <List>
+            {['Football', 'Basketball', 'Tennis', 'Golf', 'Swimming'].map((sport, index) => (
+              <ListItem key={index}>
+                <ListItemText primary={sport} />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+
+        {/* Center Column (News Feed) */}
+        <Box
+          sx={{
+            flex: { xs: '1 1 100%', md: '0 0 50%' },
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            padding: 2,
+            backgroundColor: '#e6f3ff', // Light blue
+            border: '1px solid #0000ff',
+          }}
+        >
+          <Typography variant="h5" gutterBottom>Latest News</Typography>
+          {sampleNewsData.map((news, index) => (
+            <Card
+              key={index}
+              sx={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                borderRadius: 2,
+                boxShadow: 3,
+                margin: 1,
+                backgroundColor: '#ffffff',
+                overflow: 'visible',
+              }}
+            >
+              <CardContent sx={{ 
+                padding: '16px',
+                overflowY: 'auto',
+              }}>
+                <Typography variant="h6">{news.title}</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {news.description}
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  {news.date} - By {news.author}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
+
+        {/* Right Column */}
+        <Box
+          sx={{
+            flex: { xs: '1 1 100%', md: '0 0 25%' },
+            backgroundColor: '#90EE90', // Light green
+            overflowY: 'auto',
+            padding: 2,
+            border: '1px solid #008000',
+          }}
+        >
+          <Typography variant="h6" gutterBottom>Upcoming Events</Typography>
+          <List>
+            {['Super Bowl LIX', 'NBA All-Star Game', 'Wimbledon', 'The Masters', 'Olympics 2024'].map((event, index) => (
+              <ListItem key={index}>
+                <ListItemText 
+                  primary={event} 
+                  secondary={`Date: ${new Date(2024, index, index + 1).toLocaleDateString()}`} 
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Box>
+    </Container>
+  );
+}
+
+export default HomePage;
