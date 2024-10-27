@@ -97,13 +97,13 @@ function HomePage() {
                   {news.urlToImage && (
                     <CardMedia
                       component="img"
-                      height="400"
-                      width="400"
+                      height="100%"
+                      width="100%"
                       image={news.urlToImage}
                       alt={`${news.title} image`}
                       sx={{ 
                         marginTop: 2, 
-                        maxHeight: '800px',
+                        maxHeight: '400px',
                         maxWidth: '800px', 
                         objectFit: 'cover', 
                         objectPosition: 'center',
