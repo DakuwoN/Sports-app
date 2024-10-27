@@ -1,30 +1,36 @@
 import React from 'react';
 import { Box, Card, CardContent, Typography, Divider, CardMedia, Stack } from '@mui/material';
-
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 function HomePage() {
-  const sampleNewsData = [
-    { 
-      title: 'NFL Week 1 Highlights', 
-      description: 'Catch up on all the action from the first week of the NFL season.', 
-      date: 'October 10, 2024',
-      author: 'John Doe',
-      imageURL: 'https://picsum.photos/200'
-    },
-    { 
-      title: 'NBA Preseason Updates', 
-      description: 'Key takeaways from the NBA preseason games so far.', 
-      date: 'October 9, 2024',
-      author: 'Jane Smith',
-      imageURL: 'https://picsum.photos/200'
-    },
-    { 
-      title: 'NHL Trade Rumors', 
-      description: 'Latest NHL trade rumors ahead of the new season.', 
-      date: 'October 8, 2024',
-      author: 'Mike Johnson',
-      imageURL: 'https://picsum.photos/200'
-    },
-  ];
+  
+    const [newsData, setNewsData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+  
+    useEffect(() => {
+      const fetchNews = async () => {
+        try {
+          const response = await axios.get('https://newsapi.org/v2/top-headlines', {
+            params: {
+              country: 'us',
+              category: 'sports',
+              apiKey: process.env.REACT_APP_NEWS_API_KEY
+            }
+          });
+          setNewsData(response.data.articles);
+          setLoading(false);
+        } catch (err) {
+          setError('Failed to fetch news');
+          setLoading(false);
+        }
+      };
+  
+      fetchNews();
+    }, []);
+  
+    
+
   
   
 
@@ -63,57 +69,63 @@ function HomePage() {
 
         {/* News Feed Column */}
         <Stack spacing={2} sx={{ flex: 2, width: { xs: '100%', md: '50%' } }}>
-          {sampleNewsData.map((news, index) => (
-            <Card
-              key={index}
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: 2,
-                boxShadow: 3,
-                backgroundColor: '#f5f5f5',
-                overflow: 'visible',
-              }}
-            >
-              <CardContent sx={{ 
-                padding: '16px',
-                overflowY: 'auto',
-
-               }}>
-                {/* Title */}
-                <Typography variant="h6" sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {news.title}
-                </Typography>
-
-                {/* Image */}
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={news.imageURL}
-                  alt={`${news.title} image`}
-                  sx={{ marginTop: 2, maxHeight: '200px', objectFit: 'cover', objectPosition: 'center', height: '200px', width: '100%' }}
-                />
-
-                {/* Description */}
-                <Typography variant="body2" color="text.secondary" sx={{ marginTop: 2 }}>
-                  {news.description}
-                </Typography>
-
-                {/* Divider */}
-                <Divider sx={{ marginY: 2 }} />
-
-                {/* Date and Author */}
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingX: 1 }}>
-                  <Typography variant="caption" color="text.secondary">
-                    {news.date}
+          <Typography variant="h5" gutterBottom>Latest Sports News</Typography>
+          {loading ? (
+            <Typography>Loading news...</Typography>
+          ) : error ? (
+            <Typography color="error">{error}</Typography>
+          ) : (
+            newsData.map((news, index) => (
+              <Card
+                key={index}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  borderRadius: 2,
+                  boxShadow: 3,
+                  backgroundColor: '#f5f5f5',
+                  overflow: 'visible',
+                }}
+              >
+                <CardContent sx={{ 
+                  padding: '16px',
+                  overflowY: 'auto',
+                }}>
+                  <Typography variant="h6" sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {news.title}
                   </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    By {news.author}
+                  {news.urlToImage && (
+                    <CardMedia
+                      component="img"
+                      height="400"
+                      width="400"
+                      image={news.urlToImage}
+                      alt={`${news.title} image`}
+                      sx={{ 
+                        marginTop: 2, 
+                        maxHeight: '800px',
+                        maxWidth: '800px', 
+                        objectFit: 'cover', 
+                        objectPosition: 'center',
+                       }}
+                    />
+                  )}
+                  <Typography variant="body2" color="text.secondary" sx={{ marginTop: 2 }}>
+                    {news.description}
                   </Typography>
-                </Box>
-              </CardContent>
-            </Card>
-          ))}
+                  <Divider sx={{ marginY: 2 }} />
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingX: 1 }}>
+                    <Typography variant="caption" color="text.secondary">
+                      {new Date(news.publishedAt).toLocaleDateString()}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      By {news.author || 'Unknown'}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            ))
+          )}
         </Stack>
 
         {/* Fantasy Scores Column */}
