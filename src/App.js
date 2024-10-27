@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  // Import necessary components from React Router for routing
-import Layout from './components/Layout';  // Import the Layout component to wrap around the routes
-import HomePage from './components/HomePage';  // Import the HomePage component
-import Login from './components/Login';  // Import the Login component
-import Signup from './components/Signup';  // Import the SignUp component
+import Layout from './components/Layout.jsx';  // Import the Layout component to wrap around the routes
+import HomePage from './components/HomePage/HomePage.jsx';  // Import the HomePage component
+import Login from './components/Login/Login.jsx';  // Import the Login component
+import Signup from './components/Signup/Signup.jsx';  // Import the SignUp component
 import { ThemeProvider, createTheme } from '@mui/material/styles';  // Import ThemeProvider and createTheme from Material UI
 
 // Define your custom theme here using Material UI's createTheme function

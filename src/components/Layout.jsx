@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from "./Header";  // Your existing Header component
+import Header from "./Header/Header.jsx";  // Your existing Header component
 
 function Layout() {
   return (
