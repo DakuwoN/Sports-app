@@ -27,3 +27,10 @@ Next steps and potential improvements:
 9. Testing: Write unit and integration tests for your new API integration and components.
 
 10. Performance Optimization: Monitor the performance of your app, especially after adding this new feature. You might need to optimize rendering if you're displaying a large number of news items.
+
+
+Technology stack:
+React
+Axios 
+Material UI
+React router 
