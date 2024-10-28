@@ -27,7 +27,7 @@ function HomePage() {
   ];
 
   return (
-    <Box sx={{ height: '80vh', overflowY: 'auto', padding: 2 }}>
+    <Box sx={{ flex: 1, overflowY: 'auto', padding: 2 }}>
       <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
         {/* Upcoming Games Column */}
         <Stack spacing={2} sx={{ flex: 1, width: { xs: '100%', md: '25%' } }}>
